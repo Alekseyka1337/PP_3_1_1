@@ -20,7 +20,7 @@
         <th th:text="${user.getFirstName()}"></th>
         <th th:text="${user.getLastName()}"></th>
         <th th:text="${user.getSalary()}"></th>
-        <th><form th:method="GET" th:action="@{/{id}/edit(id=${user.getId()})}">
+        <th><form th:method="GET" th:action="@{/{id}/update(id=${user.getId()})}">
             <input type="submit" value="Изменить">
         </form></th>
         <th><form th:method="DELETE" th:action="@{/{id}/delete(id=${user.getId()})}">

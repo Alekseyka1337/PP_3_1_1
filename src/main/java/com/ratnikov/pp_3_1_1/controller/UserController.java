@@ -27,15 +27,15 @@ public class UserController {
     }
 
     @GetMapping(value = "/new")
-    public String newUser (Model model) {
+    public String createUserForm (Model model) {
         model.addAttribute("user", new User());
-        return "newUser.html";
+        return "/createUser.html";
     }
 
-    @GetMapping(value = "/{id}/edit")
-    public String editUserById (@PathVariable("id") int id, Model model) {
+    @GetMapping(value = "/{id}/update")
+    public String updateUserByIdForm (@PathVariable("id") int id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
-        return "editUser.html";
+        return "updateUser.html";
     }
 
     @DeleteMapping(value = "/{id}/delete")
@@ -46,7 +46,7 @@ public class UserController {
     @PostMapping
     public String createUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "newUser.html";
+            return "/createUser.html";
         }
         userService.createUser(user);
         return "redirect:/";
@@ -54,7 +54,7 @@ public class UserController {
     @PatchMapping("/{id}")
     public String updateUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "editUser.html";
+            return "/updateUser.html";
         }
         userService.updateUser(user);
         return "redirect:/";
